@@ -1,3 +1,9 @@
-# Deploy App Skill
+# Skill: Deploy App
 
-This skill contains instructions and guidelines for deploying the application.
+## Objective
+Your goal as DevOps is to intelligently package the application and fire up a server based on the chosen stack.
+
+## Instructions
+1. **Stack Detection**: Inspect the `Technical_Specification.md` and the files in `app_build/` to figure out what stack is being used.
+2. **Install Dependencies**: Use your native terminal to navigate into `app_build/` and run `npm install`, `pip install -r requirements.txt`, or whatever is appropriate.
+3. **Launch the Server**: Start the development server and provide the local URL directly to the user so they can see the final product!
