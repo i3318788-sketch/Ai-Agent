@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Operations Blog & Insights | AeroAutomate{% endblock %}
+
+{% block content %}
+<section class="blog-section">
+    <div class="section-header">
+        <h2>Industry <span class="gradient-text">Insights</span></h2>
+        <p>Stay ahead of the curve with our technical analyses of AI agent architecture, ROI metrics, and software integration practices.</p>
+    </div>
+
+    <div class="blog-grid">
+        {% for post in posts %}
+        <article class="glass-card blog-card" id="post-{{ post.id }}">
+            <div class="blog-meta">
+                <span class="blog-date"><i class="fa-regular fa-calendar"></i> {{ post.date }}</span>
+                <span class="blog-author"><i class="fa-regular fa-user"></i> {{ post.author }}</span>
+            </div>
+            
+            <h3 class="blog-title">{{ post.title }}</h3>
+            
+            <div class="blog-summary" id="summary-{{ post.id }}">
+                <p>{{ post.summary }}</p>
+                <button class="btn-text read-more-btn" data-id="{{ post.id }}">
+                    Read Full Article <i class="fa-solid fa-arrow-right-long"></i>
+                </button>
+            </div>
+            
+            <div class="blog-full-content hidden" id="content-{{ post.id }}">
+                <p>{{ post.content }}</p>
+                <button class="btn-text read-less-btn" data-id="{{ post.id }}">
+                    <i class="fa-solid fa-arrow-left-long"></i> Show Less
+                </button>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const readMoreBtns = document.querySelectorAll('.read-more-btn');
+        const readLessBtns = document.querySelectorAll('.read-less-btn');
+
+        readMoreBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = btn.getAttribute('data-id');
+                document.getElementById(`summary-${id}`).classList.add('hidden');
+                document.getElementById(`content-${id}`).classList.remove('hidden');
+                // Scroll slightly to top of card
+                document.getElementById(`post-${id}`).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        });
+
+        readLessBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = btn.getAttribute('data-id');
+                document.getElementById(`content-${id}`).classList.add('hidden');
+                document.getElementById(`summary-${id}`).classList.remove('hidden');
+                document.getElementById(`post-${id}`).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        });
+    });
+</script>
+{% endblock %}

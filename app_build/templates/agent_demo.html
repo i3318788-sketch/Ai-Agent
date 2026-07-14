@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Interactive AI Demo | AeroAutomate{% endblock %}
+
+{% block content %}
+<section class="demo-section">
+    <div class="demo-container">
+        <!-- Sidebar with suggested prompts -->
+        <div class="glass-card demo-sidebar">
+            <h3>Consultation Topics</h3>
+            <p class="sidebar-help">Click any of the questions below to ask our AI Agent in real-time:</p>
+            <div class="prompt-suggestions">
+                <button class="suggestion-btn" data-query="What services do you offer?">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>What services do you offer?</span>
+                </button>
+                <button class="suggestion-btn" data-query="How much does a project cost?">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    <span>How much does it cost?</span>
+                </button>
+                <button class="suggestion-btn" data-query="How long does a project take?">
+                    <i class="fa-solid fa-clock"></i>
+                    <span>What are your timelines?</span>
+                </button>
+                <button class="suggestion-btn" data-query="What is an AI agent?">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>What is an AI Agent?</span>
+                </button>
+                <button class="suggestion-btn" data-query="How do we get started?">
+                    <i class="fa-solid fa-rocket"></i>
+                    <span>How do we get started?</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Interactive Chat Terminal -->
+        <div class="glass-card chat-terminal">
+            <div class="chat-header">
+                <div class="status-indicator">
+                    <span class="pulse-dot"></span>
+                    <span class="status-text font-bold">AeroBot Online</span>
+                </div>
+                <div class="chat-subtitle">AI Operations Architect</div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <!-- Bot Welcome Message -->
+                <div class="message bot-message">
+                    <div class="message-avatar">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="message-text">
+                        Hello! I am AeroBot, your autonomous operations specialist. How can I help you automate your business workflows today? Feel free to ask about our service offerings, pricing, or timelines!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Typing Indicator -->
+            <div class="chat-typing-indicator" id="chatTyping">
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+            </div>
+
+            <!-- Input Box -->
+            <form id="chatForm" class="chat-input-area">
+                <input type="text" id="chatInput" autocomplete="off" placeholder="Ask AeroBot a question about business automation..." required>
+                <button type="submit" class="btn btn-primary chat-send-btn" id="chatSendBtn" aria-label="Send message">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}
